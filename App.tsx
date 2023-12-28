@@ -1,22 +1,16 @@
-import {View, Text, Button} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import HomeScreen from './screens/home/home.screen';
+import TransactionScreen from './screens/transaction/transaction.screen';
+
+const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
-  const [counter, setCounter] = useState(0);
-
-  const handleIncrement = () => {
-    setCounter(counter + 1);
-  };
-
   return (
-    <View>
-      <Text testID="Counter.Text">Counter: {counter}</Text>
-      <Button
-        title="Increment"
-        onPress={handleIncrement}
-        testID="Increment.Button"
-      />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Transaction" component={TransactionScreen} />
+    </Tab.Navigator>
   );
 };
 
