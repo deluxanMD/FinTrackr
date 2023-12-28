@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "preci": "rm -fr node_modules",
+    "ci": "npm install --frozen-lockfile",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "prettier": "prettier . --check",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --json --outputFile=jest-report.json"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -25,6 +29,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
+    "husky": "^8.0.3",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
@@ -32,5 +37,12 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "prettier src --write",
+      "eslint src --fix",
+      "git add"
+    ]
   }
 }
