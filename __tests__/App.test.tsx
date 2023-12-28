@@ -1,17 +1,14 @@
-/**
- * @format
- */
-
-import 'react-native';
-import React from 'react';
+import {render, screen, fireEvent} from '@testing-library/react-native';
 import App from '../App';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it} from '@jest/globals';
+describe('app', () => {
+  test('should render', () => {
+    render(<App />);
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+    const button = screen.getByTestId('Increment.Button');
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+    expect(screen.getByText('Counter: 0')).toBeDefined();
+    fireEvent(button, 'press');
+    expect(screen.getByText('Counter: 1')).toBeDefined();
+  });
 });
