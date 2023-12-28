@@ -5,6 +5,7 @@ android
 ios
 vendor
 README.md
+jest-report.json
 
 # Ignore all HTML files:
 **/*.html
