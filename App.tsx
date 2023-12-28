@@ -2,19 +2,18 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import HomeScreen from './screens/home/home.screen';
 import TransactionScreen from './screens/transaction/transaction.screen';
-import {Theme} from './helpers/theme';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import FontistoIcons from 'react-native-vector-icons/Fontisto';
 import FontAwesome6Icons from 'react-native-vector-icons/FontAwesome6';
-
-type AppProps = {
-  theme: Theme;
-};
+import {useSelector} from 'react-redux';
+import type {RootState} from './store';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const App = (props: AppProps) => {
-  const {primary, inactive, white} = props.theme.color;
+const App = () => {
+  const color = useSelector((state: RootState) => state.theme.color);
+
+  const {primary, inactive, white} = color;
 
   return (
     <Tab.Navigator
@@ -32,7 +31,6 @@ const App = (props: AppProps) => {
             <FeatherIcons name="home" color={color} size={26} />
           ),
         }}
-        {...props}
       />
       {/* Transaction Screen */}
       <Tab.Screen
@@ -43,7 +41,6 @@ const App = (props: AppProps) => {
             <FontistoIcons name="arrow-swap" color={color} size={26} />
           ),
         }}
-        {...props}
       />
       {/* Budget Screen */}
       <Tab.Screen
@@ -54,7 +51,6 @@ const App = (props: AppProps) => {
             <FontAwesome6Icons name="chart-simple" color={color} size={26} />
           ),
         }}
-        {...props}
       />
       {/* Profile Screen */}
       <Tab.Screen
@@ -65,7 +61,6 @@ const App = (props: AppProps) => {
             <FontAwesome6Icons name="user" color={color} size={26} />
           ),
         }}
-        {...props}
       />
     </Tab.Navigator>
   );
