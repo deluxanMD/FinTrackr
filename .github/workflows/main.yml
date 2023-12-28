@@ -1,0 +1,50 @@
+name: pull request to dev, test & main branches
+
+on:
+  pull_request:
+    branches:
+      - 'dev'
+      - 'test'
+      - 'main'
+
+jobs:
+  install-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use node.js v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install node modules
+        run: npm ci
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Prettier
+        run: npm run prettier
+
+      - name: Unit & Integration Testing
+        run: npm run test && npm run coverage && npm run report
+
+      - name: Codecov coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          name: Upload reports to codecov
+          fail_ci_if_error: true
+          verbose: true
+      - run: |
+          set -e
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          find . -iregex "codecov.*"
+          chmod +x codecov 
+          ./codecov -t ${CODECOV_TOKEN}
+          rm codecov
