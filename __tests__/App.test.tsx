@@ -1,17 +1,35 @@
-/**
- * @format
- */
-
-import 'react-native';
-import React from 'react';
+import {render} from '@testing-library/react-native';
 import App from '../App';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it} from '@jest/globals';
+const TestComponent = () => {
+  const initialState = {
+    theme: {
+      color: {
+        primary: '#6002ee',
+        secondary: '#ee0290',
+        white: '#ffffff',
+        black: '#000000',
+        inactive: '#8c8c8c',
+      },
+    },
+  };
+  const mockStore = configureStore();
+  const store = mockStore(initialState);
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <App />
+      </NavigationContainer>
+    </Provider>
+  );
+};
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+describe('app', () => {
+  test('should render', () => {
+    render(<TestComponent />);
+  });
 });

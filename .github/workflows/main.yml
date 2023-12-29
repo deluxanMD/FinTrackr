@@ -31,10 +31,20 @@ jobs:
         run: npm run prettier
 
       - name: Unit & Integration Testing
-        run: npm run test:ci
+        run: npm run test && npm run coverage && npm run report
 
-      - name: Jest coverage report
-        uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Codecov coverage report
+        uses: codecov/codecov-action@v3
         with:
-          coverage-file: ./jest-report.json
-          base-coverage-file: ./jest-report.json
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          name: Upload reports to codecov
+          fail_ci_if_error: true
+          verbose: true
+      - run: |
+          set -e
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          find . -iregex "codecov.*"
+          chmod +x codecov 
+          ./codecov -t ${CODECOV_TOKEN}
+          rm codecov
