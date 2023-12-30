@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "prettier": "prettier . --check",
     "start": "react-native start",
-    "test": "jest --watch=true",
+    "test": "jest",
+    "test:watch": "jest --watch=true",
     "test:ci": "jest --json --outputFile=jest-report.json",
     "coverage": "nyc npm run test -- --coverage --watchAll=false",
     "report": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
