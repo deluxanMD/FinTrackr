@@ -5,23 +5,20 @@ import TransactionScreen from '../../screens/transaction/transaction.screen';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import FontistoIcons from 'react-native-vector-icons/Fontisto';
 import FontAwesome6Icons from 'react-native-vector-icons/FontAwesome6';
-import {useSelector} from 'react-redux';
-import type {RootState} from '../../store';
+import {useTheme} from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const BottomNavigation = () => {
-  const color = useSelector((state: RootState) => state.theme.color);
-
-  const {primary, inactive, white} = color;
+  const theme = useTheme();
 
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor={primary}
-      inactiveColor={inactive}
+      activeColor={theme.colors.primary}
+      inactiveColor={theme.colors.disabled}
       labeled={false}
-      barStyle={{backgroundColor: white}}>
+      barStyle={{backgroundColor: theme.colors.background}}>
       {/* Home Screen */}
       <Tab.Screen
         name="Home"

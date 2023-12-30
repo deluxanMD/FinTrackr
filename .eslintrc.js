@@ -7,5 +7,7 @@ module.exports = {
     'react/no-unstable-nested-components': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
 };

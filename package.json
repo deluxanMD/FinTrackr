@@ -11,6 +11,7 @@
     "prettier": "prettier . --check",
     "start": "react-native start",
     "test": "jest",
+    "test:watch": "jest --watch=true",
     "test:ci": "jest --json --outputFile=jest-report.json",
     "coverage": "nyc npm run test -- --coverage --watchAll=false",
     "report": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
@@ -28,6 +29,7 @@
     "react-native-reanimated": "^3.6.1",
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.29.0",
+    "react-native-swipe-gestures": "^1.0.5",
     "react-native-vector-icons": "^10.0.3",
     "react-redux": "^9.0.4"
   },
@@ -40,6 +42,7 @@
     "@react-native/metro-config": "^0.73.2",
     "@react-native/typescript-config": "^0.73.1",
     "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.4.2",
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.6",
