@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import themeReducer from './redux/theme/theme.slice';
+import ReportReducer from './redux/report/report.slice';
 
 export const store = configureStore({
   reducer: {
-    theme: themeReducer,
+    report: ReportReducer,
   },
 });
 

@@ -1,12 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import HomeTopBar from '../../components/home-top-bar/home-top-bar.component';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
-      <Icon name="rocket" size={30} color="#900" />
+      <HomeTopBar />
     </View>
   );
 };
@@ -16,8 +15,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 15,
+    marginTop: Platform.OS === 'ios' ? 50 : 0,
   },
 });

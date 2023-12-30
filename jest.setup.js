@@ -1,6 +1,7 @@
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup';
 import {jest} from '@jest/globals';
+import '@testing-library/jest-native/extend-expect';
 
 global.jest = jest;
 
